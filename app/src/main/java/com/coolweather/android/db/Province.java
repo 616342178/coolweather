@@ -4,6 +4,7 @@ import org.litepal.crud.DataSupport;
 
 /**
  * Created by jinzhicheng on 2017/10/24.
+ * 省级表
  */
 
 public class Province extends DataSupport {

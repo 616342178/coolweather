@@ -4,6 +4,7 @@ import org.litepal.crud.DataSupport;
 
 /**
  * Created by jinzhicheng on 2017/10/24.
+ * 市级表
  */
 
 public class City extends DataSupport {
