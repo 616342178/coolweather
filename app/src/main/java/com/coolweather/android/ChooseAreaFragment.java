@@ -152,7 +152,7 @@ public class ChooseAreaFragment extends Fragment {
             currentLevel = LEVEL_PROVINCE;
             //如果没有读取到就按照接口组装出一个请求地址,调用queryFromServer()方法来从服务器上查询
         } else {
-            String address = "http://JinZhiCheng.tech/api/china";
+            String address = "http://guolin.tech/api/china/";
             queryFromServer(address,"province");
         }
     }
@@ -174,7 +174,7 @@ public class ChooseAreaFragment extends Fragment {
             currentLevel = LEVEL_CITY;
         } else {
             int provinceCode = selectedProvince.getProvinceCode();
-            String address = "http://JinZhiCheng.tech/api/china" + provinceCode;
+            String address = "http://guolin.tech/api/china/" + provinceCode;
             queryFromServer(address,"city");
         }
     }
@@ -197,7 +197,7 @@ public class ChooseAreaFragment extends Fragment {
         } else {
             int provinceCode = selectedProvince.getProvinceCode();
             int cityCode = selectedCity.getCityCode();
-            String address = "http://JinZhiCheng.tech/api/china" + provinceCode + "/" + cityCode;
+            String address = "http://guolin.tech/api/china/" + provinceCode + "/" + cityCode;
             queryFromServer(address, "county");
         }
     }
