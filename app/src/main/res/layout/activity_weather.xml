@@ -10,6 +10,19 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:scaleType="centerCrop"/>
+<!-- 在SwipeRefreshLayout的外面又嵌套了一层DrawerLayout.
+     DrawerLayout中的第一个子控件用于作为主屏幕中显示的内容,
+     第二个子控件用于作为滑动菜单中显示的内容,因此这里我们在第二个子控件的位置添加了用于遍历省市县数据的碎片 -->
+    <android.support.v4.widget.DrawerLayout
+        android:id="@+id/drawer_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+<!-- 在ScrollView的外面又嵌套了一层SwipeRefreshLayout,这样ScrollView就自动拥有下拉刷新功能了 -->
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/swipe_refresh"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
 <!-- 由于天气界面中的内容比较多,使用ScrollView可以允许我们通过滚动的方式查看屏幕以外的内容 -->
     <ScrollView
@@ -40,4 +53,14 @@
 
     </ScrollView>
 
+    </android.support.v4.widget.SwipeRefreshLayout>
+
+        <fragment
+            android:id="@+id/choose_area_fragment"
+            android:name="com.coolweather.android.ChooseAreaFragment"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="start"/>
+
+    </android.support.v4.widget.DrawerLayout>
 </FrameLayout>

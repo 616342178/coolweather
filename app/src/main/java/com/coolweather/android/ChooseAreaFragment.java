@@ -114,10 +114,21 @@ public class ChooseAreaFragment extends Fragment {
 //                    如果当前级别是LEVEL_COUNTY,就启动WeatherActivity,并把当前选中县的天气id传递过去
                 } else if (currentLevel == LEVEL_COUNTY) {
                     String weatherId = countyList.get(position).getWeatherId();
-                    Intent intent = new Intent(getActivity(),WeatherActivity.class);
-                    intent.putExtra("weather_id",weatherId);
-                    startActivity(intent);
-                    getActivity().finish();
+//                    这里我使用了一个Java中的小技巧,instanceof关键字可以用来判断一个对象是否属于某个类的实例
+//                    我们在碎片中调用getActivity()方法,然后配合instanceof关键字,就能轻松判断出该碎片是在MainActivity当中,还是在WeatherActivity当中
+//                    如果是在MainActivity当中,那么处理逻辑不变,
+                    if (getActivity() instanceof MainActivity) {
+                        Intent intent = new Intent(getActivity(), WeatherActivity.class);
+                        intent.putExtra("weather_id", weatherId);
+                        startActivity(intent);
+                        getActivity().finish();
+//                        如果是在WeatherActivity当中,那么就关闭滑动菜单,显示下拉刷新进度条,然后请求新城市的天气信息
+                    } else if (getActivity() instanceof WeatherActivity) {
+                        WeatherActivity activity = (WeatherActivity) getActivity();
+                        activity.drawerLayout.closeDrawers();
+                        activity.swipeRefresh.setRefreshing(true);
+                        activity.requestWeather(weatherId);
+                    }
                 }
             }
         });
